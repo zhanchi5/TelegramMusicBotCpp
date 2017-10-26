@@ -11,7 +11,7 @@ using namespace TgBot;
 bool sigintGot = false;
 
 int main() {
-	Bot bot("377205379:AAEmGRAfTEBASf1tE7pevGok0oYLJENUa8Y");
+	Bot bot("OUR TEAM TOKEN");
 	bot.getEvents().onCommand("start", [&bot](Message::Ptr message) {
 		bot.getApi().sendMessage(message->chat->id, "Hi!");
 	});
