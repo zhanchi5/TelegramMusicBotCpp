@@ -1,0 +1,11 @@
+CMakeCache.txt
+CMakeFiles
+Makefile
+*.cmake
+install_manifest.txt
+.idea/
+Thumbs.db
+doc/
+*.cbp
+*.a
+test/TgBot_test
