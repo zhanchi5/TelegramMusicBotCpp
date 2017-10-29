@@ -2,7 +2,6 @@
 #include <signal.h>
 #include <stdio.h>
 #include <exception>
-
 #include <tgbot/tgbot.h>
 
 using namespace std;
@@ -11,7 +10,7 @@ using namespace TgBot;
 bool sigintGot = false;
 
 int main() {
-	Bot bot("OUR TEAM TOKEN");
+	Bot bot("377205379:AAEmGRAfTEBASf1tE7pevGok0oYLJENUa8Y");
 	bot.getEvents().onCommand("start", [&bot](Message::Ptr message) {
 		bot.getApi().sendMessage(message->chat->id, "Hi!");
 	});
