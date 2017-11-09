@@ -1,1 +1,10 @@
 config
+.idea/.name
+.idea/bot_test.iml
+.idea/modules.xml
+.idea/workspace.xml
+cmake-build-debug/
+file.json
+opt.cpp
+telegram_bot
+
