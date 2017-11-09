@@ -4,14 +4,16 @@ Telegram bot, providing music playlist using LastFM API ,language: C++
             *Answer will be in format trackName : urlOnLastFM*
 ```
 ## TODO:
-  1.[x] - Write functions to get response from LastFM server
-  2.[x] - Write functions to parse JSON file
-  3.[x] - Get TelegramAPI key
-  4.[x] - Write and test simple echo bot
-  5.[x] - Write and test top function
-  6.[] - Write and test genre functions (pop, rock, country, etc.)
-  7.[] - Test written code in Travis-CI
-  8.[] - Create user-friendly Documentation
-  9.[] - Packet bot
+* [x] - Write funcitons to get response from LastFM server
+* [x] - Write functions to get response from LastFM server
+  [x] - Write functions to parse JSON file
+  [x] - Get TelegramAPI key
+  [x] - Write and test simple echo bot
+  [x] - Write and test top function
+  [] - Write and test genre functions (pop, rock, country, etc.)
+  [] - Test written code in Travis-CI
+  [] - Create user-friendly Documentation
+  [] - Packet bot]
+
 
 # Course_project `developed by zhanchi5(IYterm)`
