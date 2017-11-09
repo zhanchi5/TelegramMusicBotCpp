@@ -11,16 +11,16 @@ I decided to write something useful. Use it. Test it. Waiting for feedback.
             *Answer will be in format trackName : urlOnLastFM*
 ```
 ## TODO:
-[x] Write funcitons to get response from LastFM server
-[x] Write functions to get response from LastFM server
-[x] Write functions to parse JSON file
-[x] Get TelegramAPI key
-[x] Write and test simple echo bot
-[x] Write and test top function
-[ ] Write and test genre functions (pop, rock, country, etc.)
-[ ] Test written code in Travis-CI
-[ ] Create user-friendly Documentation
-[ ] Packet bot
+- [x] 1. Write funcitons to get response from LastFM server
+- [x] 2. Write functions to get response from LastFM server
+- [x] 3. Write functions to parse JSON file
+- [x] 4. Get TelegramAPI key
+- [x] 5. Write and test simple echo bot
+- [x] 6. Write and test top function
+- [ ] 7. Write and test genre functions (pop, rock, country, etc.)
+- [ ] 8. Test written code in Travis-CI
+- [ ] 9. Create user-friendly Documentation
+- [ ] 10. Packet bot
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
