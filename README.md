@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Course_project 
 
 **Purpose**
@@ -47,4 +46,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 =======
 # Course_project
 Telegram bot, providing music playlist using LastFM API ,language: C++
->>>>>>> 62da7f291418bce69ea95f50fa7aaea93df6667f
