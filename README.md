@@ -16,4 +16,5 @@ Telegram bot, providing music playlist using LastFM API ,language: C++
 * [] - Packet bot
 
 
-# Course_project `developed by zhanchi5([IYterm](https://github.com/IYterm))`
+# Course_project        
+### developed by zhanchi5([IYterm](https://github.com/IYterm))`
