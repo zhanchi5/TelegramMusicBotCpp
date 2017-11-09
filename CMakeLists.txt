@@ -9,6 +9,6 @@ find_package(OpenSSL REQUIRED)
 find_package(Boost COMPONENTS system iostreams REQUIRED)
 include_directories(/usr/local/include ${OPENSSL_INCLUDE_DIR} ${Boost_INCLUDE_DIR})
 
-add_executable(echobot src/main.cpp)
+add_executable(echobot main.cpp)
 
 target_link_libraries(echobot /usr/local/lib/libTgBot.a ${CMAKE_THREAD_LIBS_INIT} ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES})
