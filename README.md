@@ -5,12 +5,18 @@
 Studiyng programming in university I got a task to write Telegram bot, using C++.
 I decided to write something useful. Use it. Test it. Waiting for feedback.
 ```
+# TABLE OF CONTENTS
+* [Team Members](#team-members)
+* [License](#license)
+* [Usage](#usage)
 
-## USAGE:
-``` To get current to 50 best tracks by LastFM send "/top" command.
-            *Answer will be in format trackName : urlOnLastFM*
-```
-## TODO:
+## Acknowledgments
+
+* Hat tip to anyone who's code was used
+* Inspiration
+* etc
+
+# <a name='todo'></a> TODO
 - [x] 1. Write funcitons to get response from LastFM server
 - [x] 2. Write functions to get response from LastFM server
 - [x] 3. Write functions to parse JSON file
@@ -22,18 +28,18 @@ I decided to write something useful. Use it. Test it. Waiting for feedback.
 - [ ] 9. Create user-friendly Documentation
 - [ ] 10. Packet bot
 
-## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
+# <a name='usage'></a> Usage
+``` To get current to 50 best tracks by LastFM send "/top" command.
+            *Answer will be in format trackName : urlOnLastFM*
+```
  
-* [Team Members] (#team-members)
 # <a name="team-members"></a>Team Members
 * "I.Yatsenko" <zhanchi5@protonmail.com> or [IYterm](https://github.com/IYterm)
 * "A.Alexandrov" [Imabigcookie](https://github.com/Imabigcookie)
 * "I.Kuvshinov" [Ivanopulopulo](https://github.com/Ivanopulopulo)
 
-## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+
+# <a name='license'></a> License
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
