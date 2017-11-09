@@ -24,9 +24,9 @@ I decided to write something useful. Use it. Test it. Waiting for feedback.
 - [x] 5. Write and test simple echo bot
 - [x] 6. Write and test top function
 - [ ] 7. Write and test genre functions (pop, rock, country, etc.)
-- [ ] 8. Test written code in Travis-CI
-- [ ] 9. Create user-friendly Documentation
-- [ ] 10. Packet bot
+- [ ] 8. Test written code using Travis-CI
+- [ ] 9. Create user-friendly Documentation using doxygen
+- [ ] 10. Packet bot using hunter
 
 
 # <a name='usage'></a> Usage
