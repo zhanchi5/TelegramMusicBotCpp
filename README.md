@@ -25,10 +25,12 @@ I decided to write something useful. Use it. Test it. Waiting for feedback.
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-        
-## Deveoped by
-
-* **zhanchi5** - *Initial work* - [IYterm](https://github.com/IYterm)
+ 
+* [Team Members] (#team-members)
+# <a name="team-members"></a>Team Members
+* "I.Yatsenko" <zhanchi5@protonmail.com> or [IYterm](https://github.com/IYterm)
+* "A.Alexandrov" [Imabigcookie](https://github.com/Imabigcookie)
+* "I.Kuvshinov" [Ivanopulopulo](https://github.com/Ivanopulopulo)
 
 ## Acknowledgments
 
