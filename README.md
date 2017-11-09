@@ -1,7 +1,8 @@
 Telegram bot, providing music playlist using LastFM API ,language: C++
 ## USAGE:
-  ``` To get current to 50 best tracks by LastFM send "/top" command.'''
+  ``` To get current to 50 best tracks by LastFM send "/top" command.
             *Answer will be in format trackName : urlOnLastFM*
+```
 ## TODO:
 [x] - Write functions to get response from LastFM server
 [x] - Write functions to parse JSON file
