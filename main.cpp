@@ -242,6 +242,7 @@ int main() {
                           v[0] += "\n";
                         }
                         v[0] += la;
+                        v.resize(1);
                         bot.getApi().sendMessage(message->chat->id, v[0]);
                       }
 
