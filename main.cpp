@@ -212,7 +212,6 @@ int main() {
            });*/
 
         bot.getEvents().onCommand("top", [&bot](Message::Ptr message){
-                std::string compiled_message = "";
                 CURL* curl = curl_easy_init();
                 json buf;
                 CURLcode res;
@@ -248,6 +247,10 @@ int main() {
 
 
         });
+        /*
+        bot.getEvents().onCommand("genre", [&bot](Message::Ptr message){
+
+        })*/
 
 
         signal(SIGINT, [](int s) {
