@@ -1,8 +1,8 @@
-# Course_project 
+# Course_project
 
 **Purpose**
 ```
-Studiyng programming in university I got a task to write Telegram bot, using C++.
+Studying programming in university I got a task to write Telegram bot, using C++.
 I decided to write something useful. Use it. Test it. Waiting for feedback.
 ```
 # TABLE OF CONTENTS
@@ -30,10 +30,17 @@ I decided to write something useful. Use it. Test it. Waiting for feedback.
 
 
 # <a name='usage'></a> Usage
-``` To get current to 50 best tracks by LastFM send "/top" command.
-            *Answer will be in format trackName : urlOnLastFM*
 ```
- 
+  1. Command /top
+    Returns list of top 50 songs from LastFM charts;
+  2. Command /genre
+    Returns list of top 50 songs from LastFM charts by requested genre
+
+  Format: Song name - link to [last.fm](https://last.fm)
+
+  To be continued...
+```
+
 # <a name="team-members"></a>Team Members
 * "I.Yatsenko" <zhanchi5@protonmail.com> or [IYterm](https://github.com/IYterm)
 * "A.Alexandrov" [Imabigcookie](https://github.com/Imabigcookie)
