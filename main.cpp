@@ -243,6 +243,10 @@ int main() {
 
 
         });
+        /*
+        bot.getEvents().onCommand("genre", [&bot](Message::Ptr message){
+
+        })*/
 
 
         signal(SIGINT, [](int s) {

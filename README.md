@@ -2,7 +2,7 @@
 
 **Purpose**
 ```
-Studiyng programming in university I got a task to write Telegram bot, using C++.
+Studying programming in university I got a task to write Telegram bot, using C++.
 I decided to write something useful. Use it. Test it. Waiting for feedback.
 ```
 # TABLE OF CONTENTS
@@ -31,10 +31,23 @@ I decided to write something useful. Use it. Test it. Waiting for feedback.
 
 
 # <a name='usage'></a> Usage
+<<<<<<< HEAD
 ```
 To get current to 50 best tracks by LastFM send "/top" command.
             *Answer will be in format trackName : urlOnLastFM*
 ```
+=======
+```
+  1. Command "/top"
+    Returns list of top 50 songs from LastFM charts;
+  2. Command "/genre"
+    Returns list of top 50 songs from LastFM charts by requested genre
+
+  Format: Song name - link to [last.fm](https://last.fm)
+
+  To be continued...
+```
+>>>>>>> 7667dc9cd0954c7a0d4c1a8a3b76af4f2dff0226
 
 # <a name="team-members"></a>Team Members
 * "I.Yatsenko" <zhanchi5@protonmail.com> or [IYterm](https://github.com/IYterm)
