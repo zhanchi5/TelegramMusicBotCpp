@@ -1,4 +1,4 @@
-# Course_project 
+# Course_project
 
 **Purpose**
 ```
@@ -11,6 +11,7 @@ I decided to write something useful. Use it. Test it. Waiting for feedback.
 * [Usage](#usage)
 
 ## Acknowledgments
+
 
 * Hat tip to anyone who's code was used
 * Inspiration
@@ -30,10 +31,11 @@ I decided to write something useful. Use it. Test it. Waiting for feedback.
 
 
 # <a name='usage'></a> Usage
-``` To get current to 50 best tracks by LastFM send "/top" command.
+```
+To get current to 50 best tracks by LastFM send "/top" command.
             *Answer will be in format trackName : urlOnLastFM*
 ```
- 
+
 # <a name="team-members"></a>Team Members
 * "I.Yatsenko" <zhanchi5@protonmail.com> or [IYterm](https://github.com/IYterm)
 * "A.Alexandrov" [Imabigcookie](https://github.com/Imabigcookie)

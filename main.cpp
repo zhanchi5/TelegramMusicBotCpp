@@ -1,13 +1,10 @@
-
 #include <signal.h>
 #include <stdio.h>
 #include <exception>
 #include <tgbot/tgbot.h>
-#include "cstring"
 #include <iostream>
 #include <curl/curl.h>
 #include "json.hpp"
-#include <string>
 #include <cstring>
 #include <fstream>
 #include <vector>
@@ -212,14 +209,12 @@ int main() {
            });*/
 
         bot.getEvents().onCommand("top", [&bot](Message::Ptr message){
-                std::string compiled_message = "";
                 CURL* curl = curl_easy_init();
                 json buf;
                 CURLcode res;
                 if (curl) {
                         struct curl_slist *chunk = NULL;
                         chunk = curl_slist_append(chunk, "User-Agent: Chrome");
-                        //curl_easy_setopt(curl, CURLOPT_URL, "https://music.yandex.ru/handlers/genre.jsx?genre=pop");
                         std::vector<std::string> v;
                         res = curl_easy_perform(curl);
                         curl_easy_cleanup(curl);
