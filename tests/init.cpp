@@ -1,6 +1,5 @@
 #include <catch.hpp>
-#include "json.hpp"
-#include <tgbot/tgbot.h>
+#include "main.cpp"
 
 TEST_CASE("getJSON")
 {
