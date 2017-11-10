@@ -18,16 +18,16 @@ I decided to write something useful. Use it. Test it. Waiting for feedback.
 * etc
 
 # <a name='todo'></a> TODO
-- [x] 1. Write funcitons to get response from LastFM server
-- [x] 2. Write functions to get response from LastFM server
-- [x] 3. Write functions to parse JSON file
-- [x] 4. Get TelegramAPI key
-- [x] 5. Write and test simple echo bot
-- [x] 6. Write and test top function
-- [ ] 7. Write and test genre functions (pop, rock, country, etc.)
-- [ ] 8. Test written code using [Travis-CI](https://travis-ci.org/)
-- [ ] 9. Create user-friendly Documentation using [Doxygen](http://www.stack.nl/~dimitri/doxygen/)
-- [ ] 10. Packet bot using [Hunter](https://github.com/ruslo/hunter)
+- [x] Write funcitons to get response from LastFM server
+- [x] Write functions to get response from LastFM server
+- [x] Write functions to parse JSON file
+- [x] Get TelegramAPI key
+- [x] Write and test simple echo bot
+- [x] Write and test top function
+- [ ] Write and test genre functions (pop, rock, country, etc.)
+- [ ] Test written code using [Travis-CI](https://travis-ci.org/)
+- [ ] Create user-friendly Documentation using [Doxygen](http://www.stack.nl/~dimitri/doxygen/)
+- [ ] Packet bot using [Hunter](https://github.com/ruslo/hunter)
 
 
 # <a name='usage'></a> Usage
