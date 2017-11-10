@@ -31,9 +31,9 @@ I decided to write something useful. Use it. Test it. Waiting for feedback.
 
 # <a name='usage'></a> Usage
 ```
-  1. Command /top
+  1. Command "/top"
     Returns list of top 50 songs from LastFM charts;
-  2. Command /genre
+  2. Command "/genre"
     Returns list of top 50 songs from LastFM charts by requested genre
 
   Format: Song name - link to [last.fm](https://last.fm)
