@@ -17,7 +17,7 @@ I decided to write something useful. Use it. Test it. Waiting for feedback.
 
 ## <a name='todo'></a> TODO
 
-- [x] Write funcitons to get response from LastFM server
+- [x] Write functions to get response from LastFM server
 - [x] Write functions to get response from LastFM server
 - [x] Write functions to parse JSON file
 - [x] Get TelegramAPI key
