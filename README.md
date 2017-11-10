@@ -51,5 +51,5 @@ I decided to write something useful. Use it. Test it. Waiting for feedback.
 ## <a name='license'></a> License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-# Course_project
+# *Course_project*
 Telegram bot, providing music playlist using LastFM API ,language: C++
