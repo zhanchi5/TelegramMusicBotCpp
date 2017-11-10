@@ -1,15 +1,13 @@
-# Course_project
-
-**Purpose**
-```
-Studying programming in university I got a task to write Telegram bot, using C++.
-I decided to write something useful. Use it. Test it. Waiting for feedback.
-```
 # TABLE OF CONTENTS
 * [Team Members](#team-members)
 * [License](#license)
 * [Usage](#usage)
 
+## Purpose
+```
+Studying programming in university I got a task to write Telegram bot, using C++.
+I decided to write something useful. Use it. Test it. Waiting for feedback.
+```
 ## Acknowledgments
 
 
@@ -17,7 +15,8 @@ I decided to write something useful. Use it. Test it. Waiting for feedback.
 * Inspiration
 * etc
 
-# <a name='todo'></a> TODO
+## <a name='todo'></a> TODO
+
 - [x] Write funcitons to get response from LastFM server
 - [x] Write functions to get response from LastFM server
 - [x] Write functions to parse JSON file
@@ -30,7 +29,7 @@ I decided to write something useful. Use it. Test it. Waiting for feedback.
 - [ ] Packet bot using [Hunter](https://github.com/ruslo/hunter)
 
 
-# <a name='usage'></a> Usage
+## <a name='usage'></a> Usage
 
 ```
   1. Command "/top"
@@ -42,14 +41,14 @@ I decided to write something useful. Use it. Test it. Waiting for feedback.
   To be continued...
 ```
 
-# <a name="team-members"></a>Team Members
+## <a name="team-members"></a>Team Members
 * "I.Yatsenko" <zhanchi5@protonmail.com> or [IYterm](https://github.com/IYterm)
 * "A.Alexandrov" [Imabigcookie](https://github.com/Imabigcookie)
 * "I.Kuvshinov" [Ivanopulopulo](https://github.com/Ivanopulopulo)
 
 
 
-# <a name='license'></a> License
+## <a name='license'></a> License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 # Course_project
