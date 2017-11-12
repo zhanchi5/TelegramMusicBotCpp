@@ -3,11 +3,6 @@
 * [License](#license)
 * [Usage](#usage)
 
-## Purpose
-```
-Studying programming in university I got a task to write Telegram bot, using C++.
-I decided to write something useful. Use it. Test it. Waiting for feedback.
-```
 ## Acknowledgments
 
 
