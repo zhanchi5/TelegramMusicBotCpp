@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/zhanchi5/Course_project.svg?branch=travis-ci)](https://travis-ci.org/zhanchi5/Course_project)
 # TABLE OF CONTENTS
 * [Team Members](#team-members)
 * [License](#license)
