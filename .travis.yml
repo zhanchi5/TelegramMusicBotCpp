@@ -12,6 +12,7 @@ matrix:
         apt:
           packages:
             - g++-5
+            - libboost-all-dev
             - cmake
             - cmake-data
           sources: &sources
