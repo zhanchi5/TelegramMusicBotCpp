@@ -20,7 +20,6 @@
 - [x] Write and test top function
 - [ ] Write and test genre functions (pop, rock, country, etc.)
 - [ ] Test written code using [Travis-CI](https://travis-ci.org/)
-- [ ] Create user-friendly Documentation using [Doxygen](http://www.stack.nl/~dimitri/doxygen/)
 - [ ] Packet bot using [Hunter](https://github.com/ruslo/hunter)
 
 
