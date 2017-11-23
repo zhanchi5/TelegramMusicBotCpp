@@ -1,4 +1,7 @@
 language: generic
+notifications:
+  email: false
+
 os:
 - osx
 matrix:
@@ -9,7 +12,8 @@ matrix:
         apt:
           packages:
             - g++-5
-            - libcurl
+            - cmake
+            - cmake-data
           sources: &sources
             - llvm-toolchain-precise
             - ubuntu-toolchain-r-test
