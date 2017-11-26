@@ -209,7 +209,7 @@ int main() {
            });*/
         bot.getEvents().onCommand("random", [&bot](Message::Ptr message){
           /**/
-        } )
+        } );
         bot.getEvents().onCommand("top", [&bot](Message::Ptr message){
                 CURL* curl = curl_easy_init();
                 json buf;
