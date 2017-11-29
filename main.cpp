@@ -195,10 +195,13 @@ int main() {
               "?method=chart.gettoptracks&api_key="
               "34cbc3c5bcdc5f4bbabbd1037f67b870&page=1&format=json",
               "file.json");
+      std::cout << "Formatting file" << std::endl;
       toJSON(buf, "file.json", 1);
       std::ifstream ifile("file.json");
+      std::cout << "Parsing file" << std::endl;
       json j = json::parse(ifile);
       unsigned int i = 0;
+      std::cout << "Generating message" << std::endl;
       for (auto &track : j["tracks"]["track"]) {
         v.push_back(track["name"]);
         v[i] += " ";
@@ -233,17 +236,16 @@ int main() {
           res = curl_easy_perform(curl);
           curl_easy_cleanup(curl);
           getJSON(
-              "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" +
-                  "&api_key=34cbc3c5bcdc5f4bbabbd1037f67b870&format=json",
+              "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + (Message::Text message) +"&api_key=34cbc3c5bcdc5f4bbabbd1037f67b870&format=json",
               "file.json");
           toJSON(buf, "file.json", 1);
           std::ifstream ifile("file.json");
           json j = json::parse(ifile);
           v.push_back(j["artist"]["content"]);
           bot.getApi().sendMessage(message->chat->id, v[0]);
+        }
         });
     });
-
     signal(SIGINT, [](int s) {
       printf("SIGINT got");
       sigintGot = true;
@@ -260,4 +262,4 @@ int main() {
       printf("error: %s\n", e.what());
     }
     return 0;
-}
+  }
