@@ -236,8 +236,8 @@ int main() {
           res = curl_easy_perform(curl);
           curl_easy_cleanup(curl);
           getJSON(
-              "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + (Message::Text message) +"&api_key=34cbc3c5bcdc5f4bbabbd1037f67b870&format=json",
-              "file.json");
+              "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + message + "&api_key=34cbc3c5bcdc5f4bbabbd1037f67b870&format=json",
+              "file.json"); //BUG: нет преобразования message в строку
           toJSON(buf, "file.json", 1);
           std::ifstream ifile("file.json");
           json j = json::parse(ifile);
@@ -246,6 +246,8 @@ int main() {
         }
         });
     });
+
+    //TODO:
     signal(SIGINT, [](int s) {
       printf("SIGINT got");
       sigintGot = true;
