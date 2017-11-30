@@ -61,6 +61,7 @@ before_script:
   - cd ${TRAVIS_BUILD_DIR}
   - cmake -H. -B_builds -DBUILD_TESTS=ON
 script:
+-DBUILD_TESTS=ON 
 - mkdir build
 - cd build
 - cmake .. && make
