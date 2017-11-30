@@ -59,7 +59,6 @@ before_script:
   - which $CXX
   - $CXX --version
   - cd ${TRAVIS_BUILD_DIR}
-  - cmake -H. -B_builds -DBUILD_TESTS=ON
 script:
 - cmake --build _builds
 - cmake --build _builds --target test -- ARGS=--verbose
