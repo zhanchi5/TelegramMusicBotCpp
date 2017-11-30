@@ -55,13 +55,7 @@ install:
     elif [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
       which cmake || brew install cmake
     fi
-before_script:
-  - which $CXX
-  - $CXX --version
-  - cd ${TRAVIS_BUILD_DIR}
-  - cmake -H. -B_builds -DBUILD_TESTS=ON
 script:
--DBUILD_TESTS=ON 
 - mkdir build
 - cd build
 - cmake .. && make
