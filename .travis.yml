@@ -61,4 +61,4 @@ script:
     - cd "${BUILD_DIR}"
     - cmake -DGLOBAL_PROJECT_NAME=Course_project ..
     - make
-    - make test ARGS="-VV
+    - make test ARGS="-VV"
