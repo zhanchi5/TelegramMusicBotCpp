@@ -58,4 +58,4 @@ install:
 script:
 - mkdir build
 - cd build
-- cmake --build _builds
+- cmake --build _tests
