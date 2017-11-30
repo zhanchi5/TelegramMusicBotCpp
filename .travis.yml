@@ -60,5 +60,4 @@ before_script:
   - $CXX --version
   - cd ${TRAVIS_BUILD_DIR}
 script:
-- cmake --build _builds
-- cmake --build _builds --target test -- ARGS=--verbose
+- cmake --target test -- ARGS=--verbose
