@@ -1,8 +1,8 @@
 # Installation guide
 ## Step 1: `Download release of this repository`
-  ```
-  here will be link to latest release
-  ```
+  [release.tar.gz](https://github.com/zhanchi5/Course_project/archive/0.0.1.tar.gz)
+  
+  [release.rar](https://github.com/zhanchi5/Course_project/archive/0.0.1.zip)
 ## Step 2: `Preparation`
   ```
     1st - check this software to be installed:
