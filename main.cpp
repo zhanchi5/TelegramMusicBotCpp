@@ -313,6 +313,8 @@ int main() {
                                keyboard, "Markdown");
     }
   });
+
+  //BUG: не работает InlineKeyboard
   signal(SIGINT, [](int s) {
     printf("SIGINT got");
     sigintGot = true;
