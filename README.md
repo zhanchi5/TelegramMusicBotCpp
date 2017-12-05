@@ -1,7 +1,9 @@
 # TABLE OF CONTENTS
 * [Team Members](#team-members)
 * [License](#license)
+* [Ideas](#IDEAS)
 * [Usage](#usage)
+
 
 ## Acknowledgments
 
@@ -13,15 +15,18 @@
 ## <a name='todo'></a> TODO
 
 - [x] Write functions to get response from LastFM server
-- [x] Write functions to get response from LastFM server
 - [x] Write functions to parse JSON file
 - [x] Get TelegramAPI key
 - [x] Write and test simple echo bot
-- [x] Write and test /top function
-- [x] Write and test /artist function
+- [x] Write and test `/top` function
+- [x] Write and test `/artist` function
+- [x] Write and test `/tracks` function
 - [ ] Test written code using [Travis-CI](https://travis-ci.org/)
-- [x] Create presentation of project
+- [ ] Create presentation of project
 
+## <a name='ideas'></a> IDEAS
+  1. `/video` Command - search video on Youtube by artist and track name
+  2. `/download` Command - search and download `mp3` file with requested song
 
 ## <a name='usage'></a> Usage
 
