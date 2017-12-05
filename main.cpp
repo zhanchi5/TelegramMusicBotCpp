@@ -1,5 +1,7 @@
 #include "json.hpp"
+#include <cstdlib>
 #include <cstring>
+#include <ctime>
 #include <curl/curl.h>
 #include <exception>
 #include <fstream>
@@ -8,7 +10,6 @@
 #include <stdio.h>
 #include <tgbot/tgbot.h>
 #include <vector>
-
 using nlohmann::json;
 
 int fileSize;
@@ -178,10 +179,19 @@ using namespace TgBot;
 bool sigintGot = false;
 
 int main() {
-  Bot bot("377205379:AAEmGRAfTEBASf1tE7pevGok0oYLJENUa8Y");
-
+  std::string telegram_api_key =
+      "377205379:AAEmGRAfTEBASf1tE7pevGok0oYLJENUa8Y";
+  Bot bot(telegram_api_key);
+  InlineKeyboardMarkup::Ptr keyboard(new InlineKeyboardMarkup);
+  vector<InlineKeyboardButton::Ptr> row0;
+  InlineKeyboardButton::Ptr checkButton(new InlineKeyboardButton);
+  checkButton->text = "top";
+  checkButton->callbackData = "top";
+  row0.push_back(checkButton);
+  keyboard->inlineKeyboard.push_back(row0);
   bot.getEvents().onCommand("top", [&bot](Message::Ptr message) {
-    bot.getApi().sendMessage(message->chat->id, "This command sends top 50 tracks on charts");
+    bot.getApi().sendMessage(message->chat->id,
+                             "This command sends top 50 tracks on charts");
     CURL *curl = curl_easy_init();
     json buf;
     CURLcode res;
@@ -206,7 +216,6 @@ int main() {
         v.push_back(track["name"]);
         v[i] += " ";
         v[i] += track["url"];
-        // std::cout << v[i] << std::endl;
         i++;
       }
       std::string la = v[0];
@@ -218,50 +227,106 @@ int main() {
       v[0] += la;
       v.resize(1);
       bot.getApi().sendMessage(message->chat->id, v[0]);
+      bot.getApi().sendMessage(message->chat->id, "End of command operation");
     }
 
   });
 
-    bot.getEvents().onCommand("artist", [&bot](Message::Ptr message){
-      bot.getApi().sendMessage(message->chat->id, "This command sends info about artist by request");
-      bot.getApi().sendMessage(message->chat->id, "Send artist`s name");
-      bot.getEvents().onAnyMessage([&bot](Message::Ptr message) {
-        CURL *curl = curl_easy_init();
-        json buf;
-        CURLcode res;
-        if (curl) {
-          struct curl_slist *chunk = NULL;
-          chunk = curl_slist_append(chunk, "User-Agent: Chrome");
-          std::vector<std::string> v;
-          res = curl_easy_perform(curl);
-          curl_easy_cleanup(curl);
-          getJSON(
-              "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + message + "&api_key=34cbc3c5bcdc5f4bbabbd1037f67b870&format=json",
-              "file.json"); //BUG: нет преобразования message в строку
-          toJSON(buf, "file.json", 1);
-          std::ifstream ifile("file.json");
-          json j = json::parse(ifile);
-          v.push_back(j["artist"]["content"]);
-          bot.getApi().sendMessage(message->chat->id, v[0]);
+  bot.getEvents().onCommand("artist", [&bot](Message::Ptr message) {
+    bot.getApi().sendMessage(message->chat->id,
+                             "This command sends info about artist by request");
+    bot.getApi().sendMessage(message->chat->id, "Send artist`s name");
+    bot.getEvents().onAnyMessage([&bot](Message::Ptr message) {
+      CURL *curl = curl_easy_init();
+      json buf;
+      CURLcode res;
+      if (curl) {
+        struct curl_slist *chunk = NULL;
+        chunk = curl_slist_append(chunk, "User-Agent: Chrome");
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+        std::string base_url =
+            "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=";
+        std::string api_format =
+            "&api_key=34cbc3c5bcdc5f4bbabbd1037f67b870&format=json";
+        std::string tmp = base_url + message->text + api_format;
+        std::cout << tmp << std::endl;
+        getJSON((char *)tmp.c_str(), "file.json");
+        std::ifstream ifile("file.json");
+        json j = json::parse(ifile);
+        for (auto &line : j["artist"]["bio"]["summary"]) {
+          bot.getApi().sendMessage(message->chat->id, line);
         }
-        });
-    });
-
-    //TODO:
-    signal(SIGINT, [](int s) {
-      printf("SIGINT got");
-      sigintGot = true;
-    });
-    try {
-      printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
-
-      TgLongPoll longPoll(bot);
-      while (!sigintGot) {
-        printf("Long poll started\n");
-        longPoll.start();
+        bot.getApi().sendMessage(message->chat->id, "End of command operation");
       }
-    } catch (exception &e) {
-      printf("error: %s\n", e.what());
+    });
+  });
+
+  bot.getEvents().onCommand("tracks", [&bot](Message::Ptr message) {
+    bot.getApi().sendMessage(message->chat->id,
+                             "This command returns list of tracks of artist");
+    bot.getApi().sendMessage(message->chat->id, "Send artist`s name");
+    bot.getEvents().onAnyMessage([&bot](Message::Ptr message) {
+      CURL *curl = curl_easy_init();
+      json buf;
+      CURLcode res;
+      if (curl) {
+        struct curl_slist *chunk = NULL;
+        chunk = curl_slist_append(chunk, "User-Agent: Chrome");
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+        std::string base_url = "http://ws.audioscrobbler.com/2.0/"
+                               "?method=user.getartisttracks&user=rj&artist=";
+        std::string api_format =
+            "&api_key=34cbc3c5bcdc5f4bbabbd1037f67b870&format=json";
+        std::string tmp = base_url + message->text + api_format;
+        std::cout << tmp << std::endl;
+        getJSON((char *)tmp.c_str(), "file.json");
+        std::vector<std::string> tracks;
+        std::ifstream ifile("file.json");
+        json j = json::parse(ifile);
+        std::cout << "Generating message" << std::endl;
+        unsigned int k = 0;
+        for (auto &line : j["artisttracks"]["track"]) {
+          tracks.push_back(line["name"]);
+          tracks[k] += " ";
+          tracks[k] += line["url"];
+          k++;
+        }
+        std::string la = tracks[0];
+        tracks[0].clear();
+        for (auto &i : tracks) {
+          tracks[0] += i;
+          tracks[0] += "\n";
+        }
+        tracks[0] += la;
+        tracks.resize(1);
+        bot.getApi().sendMessage(message->chat->id, tracks[0]);
+        bot.getApi().sendMessage(message->chat->id, "End of command operation");
+      }
+    });
+  });
+  bot.getEvents().onCallbackQuery([&bot, &keyboard](CallbackQuery::Ptr query) {
+    if (StringTools::startsWith(query->data, "top")) {
+      string response = "ok";
+      bot.getApi().sendMessage(query->message->chat->id, response, false, 0,
+                               keyboard, "Markdown");
     }
-    return 0;
+  });
+  signal(SIGINT, [](int s) {
+    printf("SIGINT got");
+    sigintGot = true;
+  });
+  try {
+    printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
+
+    TgLongPoll longPoll(bot);
+    while (!sigintGot) {
+      printf("Long poll started\n");
+      longPoll.start();
+    }
+  } catch (exception &e) {
+    printf("error: %s\n", e.what());
   }
+  return 0;
+}
