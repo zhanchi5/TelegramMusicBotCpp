@@ -39,7 +39,7 @@
   Output format: When all data was sent, message `End of command operation` appears
   3. /tracks
     Returns list of tracks of requested artist
-   Output format: Song name - link to LastFM
+  Output format: Song name - link to LastFM
 
   To be continued...
 ```
