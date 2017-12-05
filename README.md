@@ -19,8 +19,8 @@
 - [x] Write and test simple echo bot
 - [x] Write and test /top function
 - [x] Write and test /artist function
-- [- ] Test written code using [Travis-CI](https://travis-ci.org/)
-- [ ] Create presentation of project
+- [ ] Test written code using [Travis-CI](https://travis-ci.org/)
+- [x] Create presentation of project
 
 
 ## <a name='usage'></a> Usage
