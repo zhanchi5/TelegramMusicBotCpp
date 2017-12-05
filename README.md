@@ -17,10 +17,10 @@
 - [x] Write functions to parse JSON file
 - [x] Get TelegramAPI key
 - [x] Write and test simple echo bot
-- [x] Write and test top function
-- [ ] Write and test genre functions (pop, rock, country, etc.)
+- [x] Write and test /top function
+- [x] Write and test /artist function
 - [ ] Test written code using [Travis-CI](https://travis-ci.org/)
-- [ ] Packet bot using [Hunter](https://github.com/ruslo/hunter)
+- [x] Create presentation of project
 
 
 ## <a name='usage'></a> Usage
@@ -28,9 +28,13 @@
 ```
   1. Command "/top"
     Returns list of top 50 songs from LastFM charts;
-  2. Command "/genre"
-    Returns list of top 50 songs from LastFM charts by requested genre
   Output Format: Song name - link to LastFM
+  2. Command "/artist"
+    Returns brief of data about artest requested
+  Output format: When all data was sent, message `End of command operation` appears
+  3. /tracks
+    Returns list of tracks of requested artist
+   Output format: Song name - link to LastFM
 
   To be continued...
 ```
