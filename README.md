@@ -5,7 +5,7 @@
 * [Usage](#usage)
 
 
-#### ***Special thanks to *** [Alexander Makovskiy](https://github.com/) ***, who refactored code***
+#### ***Special thanks to [Alexander Makovskiy](https://github.com/), who refactored code***
 
 ## Acknowledgments
 
