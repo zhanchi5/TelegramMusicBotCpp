@@ -101,31 +101,10 @@ int RequestManager::TopCommand(TgBot::Message::Ptr pMessage) {
 int RequestManager::ArtistCommand(TgBot::Message::Ptr pMessage,
                                   const std::string &param) {
 
-/// через два сообщения теперь хочешь делать?
-// иии другие функции? я бы сделал через 2 сообщения. Сегодня у Вершинина спрошу, что делать далшье, тесты или и так сойдет?
-// если хочешь через 2 сообщения, тебе нужно только параметр достать
-// ЗАРАНЕЕ
-// не в этой функции
 
 
   if (param.empty()) {
-  /*  _pBot->getApi().sendMessage(pMessage->chat->id, "Send artist`s name");
-    _pBot->getEvents().onAnyMessage(pMessage) {
-      std::string base_url =
-          "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=";
-      std::string api_format =
-          "&api_key=34cbc3c5bcdc5f4bbabbd1037f67b870&format=json";
-      std::string tmp = base_url + pMessage->text + api_format;
-      std::cout << tmp << std::endl;
-      getJSON((char *)tmp.c_str(), "file.json");
-      std::ifstream ifile("file.json");
-      json j = json::parse(ifile);
-      for (auto &line : j["artist"]["bio"]["summary"]) {
-        _pBot->getApi().sendMessage(pMessage->chat->id, line);
-      }
-      _pBot->getApi().sendMessage(pMessage->chat->id,
-                                  "End of command operation");
-    }*/
+    // TODO: обработать
   }
 
   std::string base_url =
