@@ -5,13 +5,13 @@
 * [Usage](#usage)
 
 
-#### ***Special thanks to [Alexander Makovskiy](https://github.com/malexkiy), who refactored code***
 
 ## Acknowledgments
 
 * Hat tip to anyone who's code was used
 * Inspiration
 * etc
+#### ***Special thanks to [Alexander Makovskiy](https://github.com/malexkiy), who refactored code***
 
 ## <a name='todo'></a> TODO
 
@@ -43,7 +43,7 @@
   3. Command "/tracks"
     Returns list of tracks of requested artist
   Output format: Song name - link to LastFM
-  4. command "/video"
+  4. Command "/video"
     Returns link to music video of requested song/melody on YouTube
 
   To be continued...
