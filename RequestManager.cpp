@@ -8,7 +8,6 @@ RequestManager::RequestManager() {
   std::string telegram_api_key =
       "377205379:AAFdYigWVjta_zFOSxVAYfnUV05yVcrmVik";
   _pBot = new TgBot::Bot(telegram_api_key);
-
 }
 
 RequestManager::~RequestManager() {}
@@ -25,26 +24,27 @@ int RequestManager::StartRequestHandler() {
       param = message->text.substr(ind + 1, message->text.length() - ind - 1);
     }
     // TODO: обработать param на предмет nullptr
-      RequestHandle(message, command, param);
+    RequestHandle(message, command, param);
   });
 
   try {
     printf("Bot username: %s\n", _pBot->getApi().getMe()->username.c_str());
 
     TgBot::TgLongPoll longPoll(*_pBot);
-    while (true) {
+    while (!false) {
       printf("Long poll started\n");
       longPoll.start();
     }
   } catch (std::exception &e) {
     printf("error: %s\n", e.what());
   }
+
+  return 0;
 }
 
 int RequestManager::RequestHandle(TgBot::Message::Ptr pMessage,
                                   const std::string &command,
                                   const std::string &param) {
-
 
   int res = 0;
 
@@ -54,24 +54,20 @@ int RequestManager::RequestHandle(TgBot::Message::Ptr pMessage,
 
   std::cout << command << std::endl << param << std::endl;
 
-    if (command == "/start") {
-    res = StartCommand(pMessage);
-  } else if (command == "/top") {
+  if (command == "/top") {
     res = TopCommand(pMessage);
-  } else if (command == "/artist") {
+  }
+   else if (command == "/artist")
+  {
     res = ArtistCommand(pMessage, param);
-  } else if (command == "/video") {
+  }
+  else if (command == "/video") {
     res = VideoCommand(pMessage, param);
   } else if (command == "/tracks") {
     res = TrackCommand(pMessage, param);
   }
 
   return res;
-}
-
-int RequestManager::StartCommand(TgBot::Message::Ptr pMessage) {
-  _pBot->getApi().sendMessage(pMessage->chat->id, "Hey, Lets Rocket!");
-  return 0;
 }
 
 int RequestManager::TopCommand(TgBot::Message::Ptr pMessage) {
@@ -93,7 +89,6 @@ int RequestManager::TopCommand(TgBot::Message::Ptr pMessage) {
 
   _pBot->getApi().sendMessage(pMessage->chat->id, response);
   _pBot->getApi().sendMessage(pMessage->chat->id, "End of command operation");
-  return 0;
 }
 
 int RequestManager::ArtistCommand(TgBot::Message::Ptr pMessage,
@@ -101,7 +96,6 @@ int RequestManager::ArtistCommand(TgBot::Message::Ptr pMessage,
 
   if (param.empty()) {
     // TODO: обработать
-    return -1;
   }
 
   std::string base_url =
@@ -112,15 +106,19 @@ int RequestManager::ArtistCommand(TgBot::Message::Ptr pMessage,
   std::cout << tmp << std::endl;
 
   std::string resp = getJSON(tmp);
-  json j = json::parse(resp);
+  try {
+    json j = json::parse(resp);
 
-  std::string text = j["artist"]["bio"]["summary"].get<std::string>();
-  boost::replace_all(text, "<a href=\"", "\n");
-  boost::replace_all(text, "\">Read more on Last.fm</a>", "");
+    std::string text = j["artist"]["bio"]["summary"].get<std::string>();
+    boost::replace_all(text, "<a href=\"", "\n");
+    boost::replace_all(text, "\">Read more on Last.fm</a>", "");
 
-  _pBot->getApi().sendMessage(pMessage->chat->id, text);
-  _pBot->getApi().sendMessage(pMessage->chat->id, "End of command operation");
+    _pBot->getApi().sendMessage(pMessage->chat->id, text);
+    _pBot->getApi().sendMessage(pMessage->chat->id, "End of command operation");
 
+  } catch (std::exception &e) {
+    printf("error: %s\n", e.what());
+  }
   return 0;
 }
 
@@ -158,7 +156,7 @@ std::string RequestManager::getJSON(const std::string &url) {
     struct curl_slist *chunk = nullptr; // список на ноль
     chunk = curl_slist_append(
         chunk,
-        "User-Agent: Firefox"); // кастомный хэдер USERAGENT в список хэдеров
+        "User-Agent: David"); // кастомный хэдер USERAGENT в список хэдеров
     res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER,
                            chunk); // список отправляется в хэдер запроса
     curl_easy_setopt(curl, CURLOPT_URL,
