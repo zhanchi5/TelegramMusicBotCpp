@@ -15,16 +15,27 @@ RequestManager::~RequestManager() {}
 int RequestManager::StartRequestHandler() {
 
   _pBot->getEvents().onAnyMessage([&](TgBot::Message::Ptr message) {
-    std::string command, param;
+    static std::string command = "";
+    std::string param;
 
-    int ind = message->text.find(' ', 0);
-    command = message->text.substr(0, ind);
+    if (command.empty()) {
+      int ind = message->text.find(' ', 0);
+      command = message->text.substr(0, ind);
 
-    if (ind < message->text.length() - 1) {
-      param = message->text.substr(ind + 1, message->text.length() - ind - 1);
+      if (ind < message->text.length() - 1) {
+        param = message->text.substr(ind + 1, message->text.length() - ind - 1);
+      }
+    } else {
+      param = message->text;
     }
-    // TODO: обработать param на предмет nullptr
-    RequestHandle(message, command, param);
+
+    std::cout << "Command: " << command << std::endl;
+    std::cout << "Param: " << param << std::endl;
+
+    if (!command.empty() && !param.empty() || command == "/top") {
+      RequestHandle(message, command, param);
+      command = "";
+    }
   });
 
   try {
@@ -69,10 +80,9 @@ int RequestManager::RequestHandle(TgBot::Message::Ptr pMessage,
 
 int RequestManager::TopCommand(TgBot::Message::Ptr pMessage) {
   std::string LastFM_api = "34cbc3c5bcdc5f4bbabbd1037f67b870";
-  std::string resp =
-      getJSON("http://ws.audioscrobbler.com/2.0/"
-              "?method=chart.gettoptracks&api_key=" + LastFM_api +
-              "&page=1&format=json");
+  std::string resp = getJSON("http://ws.audioscrobbler.com/2.0/"
+                             "?method=chart.gettoptracks&api_key=" +
+                             LastFM_api + "&page=1&format=json");
 
   std::cout << "Parsing response" << std::endl;
   json j = json::parse(resp);
@@ -99,8 +109,7 @@ int RequestManager::ArtistCommand(TgBot::Message::Ptr pMessage,
   std::string LastFM_api = "34cbc3c5bcdc5f4bbabbd1037f67b870";
   std::string base_url =
       "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=";
-  std::string api_format =
-      "&api_key=" + LastFM_api + "&format=json";
+  std::string api_format = "&api_key=" + LastFM_api + "&format=json";
   std::string tmp = base_url + param + api_format;
   std::cout << tmp << std::endl;
 
@@ -145,7 +154,7 @@ int RequestManager::VideoCommand(TgBot::Message::Ptr pMessage,
     std::string youtube_base = "https://www.youtube.com/watch?v=";
     std::string text = j["items"][0]["id"]["videoId"].get<std::string>();
 
-    _pBot->getApi().sendMessage(pMessage->chat->id, youtube_base+text);
+    _pBot->getApi().sendMessage(pMessage->chat->id, youtube_base + text);
     _pBot->getApi().sendMessage(pMessage->chat->id, "End of command operation");
 
   } catch (std::exception &e) {
@@ -162,32 +171,22 @@ int RequestManager::TrackCommand(TgBot::Message::Ptr pMessage,
   std::string LastFM_api = "34cbc3c5bcdc5f4bbabbd1037f67b870";
   std::string base_url = "http://ws.audioscrobbler.com/2.0/"
                          "?method=user.getartisttracks&user=rj&artist=";
-  std::string api_format =
-      "&api_key=" + LastFM_api + "&format=json";
+  std::string api_format = "&api_key=" + LastFM_api + "&format=json";
   std::string tmp = base_url + param + api_format;
   std::cout << tmp << std::endl;
   std::string resp = getJSON(tmp);
-  std::cout << resp << std::endl;
+  // std::cout << resp << std::endl;
   try {
     std::cout << "Parsing response" << std::endl;
     json j = json::parse(resp);
     std::string response;
-    for (auto &i : j["artisttracks"]["track"]){
-      response += i["name"].get<std::string>() + "\n";
+    for (auto &i : j["artisttracks"]["track"]) {
+      response += i["name"].get<std::string>() + "\n" +
+                  i["url"].get<std::string>() + "\n";
     }
-    std::cout << response << std::endl;
-  /*
 
-    std::string response;
-    std::cout << "Generating message" << std::endl;
-    //std::cout << response << std::endl;
-
-    for (auto &i : j){
-      response += i["name"];
-    }*/
-  //  std::cout << response << std::endl;
-    //_pBot->getApi().sendMessage(pMessage->chat->id, text);
-    //_pBot->getApi().sendMessage(pMessage->chat->id, "End of command operation");
+    _pBot->getApi().sendMessage(pMessage->chat->id, response);
+    _pBot->getApi().sendMessage(pMessage->chat->id, "End of command operation");
 
   } catch (std::exception &e) {
     printf("error: %s\n", e.what());
@@ -212,7 +211,7 @@ std::string RequestManager::getJSON(const std::string &url) {
     struct curl_slist *chunk = nullptr; // список на ноль
     chunk = curl_slist_append(
         chunk,
-        "User-Agent: David"); // кастомный хэдер USERAGENT в список хэдеров
+        "User-Agent: Firefox"); // кастомный хэдер USERAGENT в список хэдеров
     res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER,
                            chunk); // список отправляется в хэдер запроса
     curl_easy_setopt(curl, CURLOPT_URL,
