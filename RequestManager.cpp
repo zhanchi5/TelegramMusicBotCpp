@@ -56,12 +56,9 @@ int RequestManager::RequestHandle(TgBot::Message::Ptr pMessage,
 
   if (command == "/top") {
     res = TopCommand(pMessage);
-  }
-   else if (command == "/artist")
-  {
+  } else if (command == "/artist") {
     res = ArtistCommand(pMessage, param);
-  }
-  else if (command == "/video") {
+  } else if (command == "/video") {
     res = VideoCommand(pMessage, param);
   } else if (command == "/tracks") {
     res = TrackCommand(pMessage, param);
@@ -71,12 +68,13 @@ int RequestManager::RequestHandle(TgBot::Message::Ptr pMessage,
 }
 
 int RequestManager::TopCommand(TgBot::Message::Ptr pMessage) {
+  std::string LastFM_api = "34cbc3c5bcdc5f4bbabbd1037f67b870";
   std::string resp =
       getJSON("http://ws.audioscrobbler.com/2.0/"
-              "?method=chart.gettoptracks&api_key="
-              "34cbc3c5bcdc5f4bbabbd1037f67b870&page=1&format=json");
+              "?method=chart.gettoptracks&api_key=" + LastFM_api +
+              "&page=1&format=json");
 
-  std::cout << "Parsing file" << std::endl;
+  std::cout << "Parsing response" << std::endl;
   json j = json::parse(resp);
 
   std::cout << "Generating message" << std::endl;
@@ -89,19 +87,20 @@ int RequestManager::TopCommand(TgBot::Message::Ptr pMessage) {
 
   _pBot->getApi().sendMessage(pMessage->chat->id, response);
   _pBot->getApi().sendMessage(pMessage->chat->id, "End of command operation");
+  return 0;
 }
 
 int RequestManager::ArtistCommand(TgBot::Message::Ptr pMessage,
                                   const std::string &param) {
 
   if (param.empty()) {
-    // TODO: обработать
+    return -1;
   }
-
+  std::string LastFM_api = "34cbc3c5bcdc5f4bbabbd1037f67b870";
   std::string base_url =
       "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=";
   std::string api_format =
-      "&api_key=34cbc3c5bcdc5f4bbabbd1037f67b870&format=json";
+      "&api_key=" + LastFM_api + "&format=json";
   std::string tmp = base_url + param + api_format;
   std::cout << tmp << std::endl;
 
@@ -127,14 +126,71 @@ int RequestManager::VideoCommand(TgBot::Message::Ptr pMessage,
   if (param.empty()) {
     return -1;
   }
+  std::string base_url = "https://www.googleapis.com/youtube/v3/search?key=";
+  std::string api_format = "&part=snippet&q=";
+  std::string youtube_api = "AIzaSyCh93dy15Ql-AGA0OA3ynfc5R5KbwuVI7g";
+  std::string youtube_base = "https://www.youtube.com/watch?v=";
+  std::transform(pMessage->text.begin(), pMessage->text.end(),
+                 pMessage->text.begin(),
+                 [](char ch) { return ch == ' ' ? '+' : ch; });
 
-  return 0;
+  std::string tmp = base_url + youtube_api + api_format + pMessage->text;
+
+  std::cout << tmp << std::endl;
+
+  std::string resp = getJSON(tmp);
+  try {
+    json j = json::parse(resp);
+
+    std::string youtube_base = "https://www.youtube.com/watch?v=";
+    std::string text = j["items"][0]["id"]["videoId"].get<std::string>();
+
+    _pBot->getApi().sendMessage(pMessage->chat->id, youtube_base+text);
+    _pBot->getApi().sendMessage(pMessage->chat->id, "End of command operation");
+
+  } catch (std::exception &e) {
+    printf("error: %s\n", e.what());
+    return 0;
+  }
 }
 
 int RequestManager::TrackCommand(TgBot::Message::Ptr pMessage,
                                  const std::string &param) {
   if (param.empty()) {
     return -1;
+  }
+  std::string LastFM_api = "34cbc3c5bcdc5f4bbabbd1037f67b870";
+  std::string base_url = "http://ws.audioscrobbler.com/2.0/"
+                         "?method=user.getartisttracks&user=rj&artist=";
+  std::string api_format =
+      "&api_key=" + LastFM_api + "&format=json";
+  std::string tmp = base_url + param + api_format;
+  std::cout << tmp << std::endl;
+  std::string resp = getJSON(tmp);
+  std::cout << resp << std::endl;
+  try {
+    std::cout << "Parsing response" << std::endl;
+    json j = json::parse(resp);
+    std::string response;
+    for (auto &i : j["artisttracks"]["track"]){
+      response += i["name"].get<std::string>() + "\n";
+    }
+    std::cout << response << std::endl;
+  /*
+
+    std::string response;
+    std::cout << "Generating message" << std::endl;
+    //std::cout << response << std::endl;
+
+    for (auto &i : j){
+      response += i["name"];
+    }*/
+  //  std::cout << response << std::endl;
+    //_pBot->getApi().sendMessage(pMessage->chat->id, text);
+    //_pBot->getApi().sendMessage(pMessage->chat->id, "End of command operation");
+
+  } catch (std::exception &e) {
+    printf("error: %s\n", e.what());
   }
 
   return 0;

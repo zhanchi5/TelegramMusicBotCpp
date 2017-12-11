@@ -1,5 +1,5 @@
 # TABLE OF CONTENTS
-* [Team Members](#team-members)
+* [Aurhor](#author)
 * [License](#license)
 * [Ideas](#IDEAS)
 * [Usage](#usage)
@@ -11,7 +11,7 @@
 * Hat tip to anyone who's code was used
 * Inspiration
 * etc
-#### ***Special thanks to [Alexander Makovskiy](https://github.com/malexkiy), who refactored code***
+
 
 ## <a name='todo'></a> TODO
 
@@ -25,7 +25,6 @@
 - [x] Write and test `/tracks` function
 - [x] Get YouTubeData API key
 - [x] Write and test `/video` function
-- [ ] Test written code using [Travis-CI](https://travis-ci.org/)
 - [ ] Create presentation of project
 
 ## <a name='ideas'></a> IDEAS
@@ -37,21 +36,22 @@
   1. Command "/top"
     Returns list of top 50 songs from LastFM charts;
   Output Format: Song name - link to LastFM
-  2. Command "/artist"
+  2. Command "/artist" + argument
     Returns brief of data about artest requested
   Output format: When all data was sent, message `End of command operation` appears
-  3. Command "/tracks"
+  3. Command "/tracks" + argument
     Returns list of tracks of requested artist
   Output format: Song name - link to LastFM
-  4. Command "/video"
+  4. Command "/video" + argument
     Returns link to music video of requested song/melody on YouTube
 
   To be continued...
 ```
 
-## <a name="team-members"></a>Team Members
-* "I.Yatsenko" <zhanchi5@protonmail.com> or [IYterm](https://github.com/IYterm)
+## <a name="author"></a>Author
+* #### "I.Yatsenko" <zhanchi5@protonmail.com> or [IYterm](https://github.com/IYterm)
 
+#### ***Special thanks to [Alexander Makovskiy](https://github.com/malexkiy), who refactored code***
 
 
 

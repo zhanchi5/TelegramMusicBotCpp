@@ -11,18 +11,14 @@ class RequestManager {
 private:
   TgBot::Bot *_pBot;
 
-
-  int RequestHandle(TgBot::Message::Ptr pMessage,
-                    const std::string &command, const std::string &param);
+  int RequestHandle(TgBot::Message::Ptr pMessage, const std::string &command,
+                    const std::string &param);
 
   int StartCommand(TgBot::Message::Ptr pMessage);
   int TopCommand(TgBot::Message::Ptr pMessage);
-  int ArtistCommand(TgBot::Message::Ptr pMessage,
-                    const std::string &param);
-  int VideoCommand(TgBot::Message::Ptr pMessage,
-                   const std::string &param);
-  int TrackCommand(TgBot::Message::Ptr pMessage,
-                   const std::string &param);
+  int ArtistCommand(TgBot::Message::Ptr pMessage, const std::string &param);
+  int VideoCommand(TgBot::Message::Ptr pMessage, const std::string &param);
+  int TrackCommand(TgBot::Message::Ptr pMessage, const std::string &param);
 
   std::string getJSON(const std::string &url);
 
