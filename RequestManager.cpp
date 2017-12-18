@@ -36,6 +36,7 @@ int RequestManager::StartRequestHandler() {
       RequestHandle(message, command, param);
       command = "";
     } else {
+      if (command != "/start")
       _pBot->getApi().sendMessage(message->chat->id, "Enter your request!");
     }
   });

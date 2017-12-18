@@ -14,7 +14,6 @@ private:
   int RequestHandle(TgBot::Message::Ptr pMessage, const std::string &command,
                     const std::string &param);
 
-  int StartCommand(TgBot::Message::Ptr pMessage);
   int TopCommand(TgBot::Message::Ptr pMessage);
   int ArtistCommand(TgBot::Message::Ptr pMessage, const std::string &param);
   int VideoCommand(TgBot::Message::Ptr pMessage, const std::string &param);
