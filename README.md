@@ -51,7 +51,6 @@
 ## <a name="author"></a>Author
 * #### "I.Yatsenko" <zhanchi5@protonmail.com> or [IYterm](https://github.com/IYterm)
 
-###### ***Special thanks to [Alexander Makovskiy](https://github.com/malexkiy), who refactored code***
 
 
 
