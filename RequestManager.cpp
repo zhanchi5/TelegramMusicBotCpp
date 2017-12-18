@@ -35,8 +35,7 @@ int RequestManager::StartRequestHandler() {
     if (!command.empty() && !param.empty() || command == "/top") {
       RequestHandle(message, command, param);
       command = "";
-    }
-    else{
+    } else {
       _pBot->getApi().sendMessage(message->chat->id, "Enter your request!");
     }
   });
