@@ -32,13 +32,17 @@ int RequestManager::StartRequestHandler() {
     std::cout << "Command: " << command << std::endl;
     std::cout << "Param: " << param << std::endl;
 
+    if (command == "/start" and param.empty()) {
+      RequestHandle(message, command, "");
+      command = "";
+    } else if (command != "/top" and param.empty()){
+      _pBot->getApi().sendMessage(message->chat->id, "Enter your request!");
+    }
     if (!command.empty() && !param.empty() || command == "/top") {
       RequestHandle(message, command, param);
       command = "";
-    } else {
-      if (command != "/start")
-      _pBot->getApi().sendMessage(message->chat->id, "Enter your request!");
     }
+
   });
 
   try {
