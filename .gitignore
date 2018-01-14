@@ -8,3 +8,7 @@ file.json
 opt.cpp
 telegram_bot
 curl/
+database_function.cpp
+insert_function.cpp
+node_modules/
+test
