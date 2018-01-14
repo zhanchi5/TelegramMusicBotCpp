@@ -25,7 +25,7 @@
 - [x] Write and test `/tracks` function
 - [x] Get YouTubeData API key
 - [x] Write and test `/video` function
-- [ ] Create presentation of project
+- [x] Create presentation of project
 
 ## <a name='ideas'></a> IDEAS
   1. `/download` Command - search and download `mp3` file with requested song
