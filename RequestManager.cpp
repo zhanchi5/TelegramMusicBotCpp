@@ -2,7 +2,10 @@
 #include <boost/algorithm/string/replace.hpp>
 #include <exception>
 #include <iostream>
+#include <pqxx/pqxx>
+
 using nlohmann::json;
+using namespace pqxx;
 
 RequestManager::RequestManager() {
   std::string telegram_api_key =
@@ -35,7 +38,7 @@ int RequestManager::StartRequestHandler() {
     if (command == "/start" and param.empty()) {
       RequestHandle(message, command, "");
       command = "";
-    } else if (command != "/top" and param.empty()){
+    } else if (command != "/top" and param.empty()) {
       _pBot->getApi().sendMessage(message->chat->id, "Enter your request!");
     }
     if (!command.empty() && !param.empty() || command == "/top") {
@@ -47,6 +50,21 @@ int RequestManager::StartRequestHandler() {
 
   try {
     printf("Bot username: %s\n", _pBot->getApi().getMe()->username.c_str());
+    try {
+      connection C("dbname = postgres user = postgres password = cohondob \
+       hostaddr = 127.0.0.1 port = 5432");
+      if (C.is_open()) {
+        std::cout << "Opened database successfully: " << C.dbname()
+                  << std::endl;
+      } else {
+        std::cout << "Can't open database" << std::endl;
+        return 1;
+      }
+      C.disconnect();
+    } catch (const std::exception &e) {
+      std::cerr << e.what() << std::endl;
+      return 1;
+    }
 
     TgBot::TgLongPoll longPoll(*_pBot);
     while (!false) {
@@ -81,7 +99,7 @@ int RequestManager::RequestHandle(TgBot::Message::Ptr pMessage,
   } else if (command == "/tracks") {
     res = TrackCommand(pMessage, param);
   }
-
+  insertToDB(command, param);
   return res;
 }
 
@@ -232,4 +250,45 @@ std::string RequestManager::getJSON(const std::string &url) {
   }
 
   return response;
+}
+
+int RequestManager::insertToDB(std::string command, std::string param) {
+  std::string sql;
+  try {
+    connection C("dbname = postgres user = postgres password = cohondob \
+      hostaddr = 127.0.0.1 port = 5432");
+    if (C.is_open()) {
+      std::cout << "Opened database successfully: " << C.dbname() << std::endl;
+    } else {
+      std::cout << "Can't open database" << std::endl;
+      return 1;
+    }
+    command.erase(0, 1);
+    /* Create SQL statement */
+    if (param.empty()) {
+      sql = std::string("INSERT INTO bot_requests (command, param) "
+                        "VALUES ") +
+            "(\'" + command + "\'" + "," + "\'" + "NONE" + "\')" + ";";
+      // std::cout << std::string("INSERT INTO bot_requests (command, param) "
+      //    "VALUES ") + "(\"" + command + "\"" + "," + "\"" + param + "\")" +
+      //    ";";
+    } else {
+      sql = std::string("INSERT INTO bot_requests (command, param) "
+                        "VALUES ") +
+            "(\'" + command + "\'" + "," + "\'" + param + "\')" + ";";
+    }
+    /* Create a transactional object. */
+    work W(C);
+
+    /* Execute SQL query */
+    W.exec(sql);
+    W.commit();
+    std::cout << "Records created successfully" << std::endl;
+    C.disconnect();
+  } catch (const std::exception &e) {
+    std::cerr << e.what() << std::endl;
+    return 1;
+  }
+
+  return 0;
 }

@@ -20,6 +20,7 @@ private:
   int TrackCommand(TgBot::Message::Ptr pMessage, const std::string &param);
 
   std::string getJSON(const std::string &url);
+  int insertToDB(std::string command, std::string param);
 
 public:
   RequestManager();
